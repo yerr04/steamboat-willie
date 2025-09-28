@@ -1,15 +1,21 @@
 'use client'
 import Link from 'next/link'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Navbar() {
     const [selectedLanguage, setSelectedLanguage] = useState('EN')
+    const router = useRouter()
+
+    const handlePlayGameClick = () => {
+        router.push('/buy')
+    }
 
     return (
         <nav className="bg-[#1d1d1d] p-4 sticky top-0 z-50">
             <div className="grid grid-cols-3 items-center p-4 w-full border-b-2 border-[#faf5ed]">
                 <div className="justify-self-start text-white font-bold text-lg">
-                    <Link href="/">Steamboat Willie</Link>
+                    <Link href="/">Willie's Boat Adventure</Link>
                 </div>
                 <div className="hidden md:flex justify-self-center space-x-6 text-white">
                     <Link href="/">Our Game</Link>
@@ -33,11 +39,12 @@ export default function Navbar() {
                     </div>
                     
                     {/* Play Game Button */}
-                    <Link href="/play">
-                        <button className="bg-[#faeedc] hover:bg-[#faf5ed] text-black font-semibold px-4 py-2 rounded transition-colors duration-200">
-                            Play Game
-                        </button>
-                    </Link>
+                    <button 
+                        onClick={handlePlayGameClick}
+                        className="bg-[#faeedc] hover:bg-[#faf5ed] text-black font-semibold px-4 py-2 rounded transition-colors duration-200"
+                    >
+                        Play Game
+                    </button>
                 </div>
             </div>
         </nav>
